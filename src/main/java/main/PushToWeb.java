@@ -10,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
+import com.google.common.base.Strings;
 import com.sun.xml.internal.txw2.IllegalSignatureException;
 
+import conf.GlobalConfig;
 import dao.DailiDao;
 import domain.DailiDomain;
 
@@ -25,10 +27,14 @@ public class PushToWeb {
 			throw new IllegalStateException("没有数据，找不到最后一条daili信息。");
 		}
 		final DailiDomain dd = op.get();
-		if(args == null || args.length < 1){
-			throw new IllegalStateException("必须要有一个执行参数[所推送过去的dailiweb的http地址]");
+//		if(args == null || args.length < 1){
+//			throw new IllegalStateException("必须要有一个执行参数[所推送过去的dailiweb的http地址]");
+//		}
+//		final String targetUrl = args[0];
+		final String targetUrl = (String)GlobalConfig.get("dailiweb_post_url");
+		if(Strings.isNullOrEmpty(targetUrl)){
+			throw new IllegalStateException("[dailiweb_post_url]没有配置");
 		}
-		final String targetUrl = args[0];
 		try {
 			post(targetUrl, dd);
 		} catch (Exception e) {
