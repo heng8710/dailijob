@@ -26,7 +26,7 @@ public class DailiDao {
 	}
 	
 	public static Optional<DailiDomain> getLastOne(){
-		final String sql = "select * from dali order by addTime desc limit 0,1";
+		final String sql = "select * from daili order by addTime desc limit 0,1";
 		try (final Connection conn = conn();final Statement st = conn.createStatement();final ResultSet rs = st.executeQuery(sql)){
 			if(rs.next()){
 				final Long id = rs.getLong("id");
@@ -57,7 +57,7 @@ public class DailiDao {
 	
 	
 	public static List<DailiDomain> getAll(){
-		final String sql = "select * from dali order by addTime desc limit";
+		final String sql = "select * from daili order by addTime desc limit";
 		final List<DailiDomain> list = Lists.newArrayList();
 		try (final Connection conn = conn();final Statement st = conn.createStatement();final ResultSet rs = st.executeQuery(sql)){
 			while(rs.next()){
