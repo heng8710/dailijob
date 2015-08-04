@@ -50,10 +50,10 @@ public class PushToWeb {
 //	            .register(FilterForExampleCom.class)
 //	            .path("")
 //	            .queryParam("greeting", "Hi World!")
-	            .request(MediaType.APPLICATION_JSON + " ;charset=utf-8")
+				.request()
+//	            .request(MediaType.APPLICATION_JSON + " ;charset=utf-8")
 //	            .header("some-header", "true")
-	            .post(Entity.json(dd));
-		
+	            .post(Entity.entity(dd, MediaType.APPLICATION_JSON + " ;charset=utf-8"));
 		if(resp.getStatus() >= 200 && resp.getStatus() < 300){
 			//正确
 			return ;
