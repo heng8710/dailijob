@@ -9,6 +9,8 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 
@@ -42,7 +44,7 @@ public class PushToWeb {
 		}
 	}
 	
-	static void post(final String targetUrl, final DailiDomain dd){
+	static void post(final String targetUrl, final DailiDomain dd) throws Exception{
 		final Client client = ClientBuilder.newClient();
 //		WebTarget target = client.target("http://localhost:9998").path("resource");
 //		Entity e = new Entity();
@@ -53,7 +55,7 @@ public class PushToWeb {
 				.request()
 //	            .request(MediaType.APPLICATION_JSON + " ;charset=utf-8")
 //	            .header("some-header", "true")
-	            .post(Entity.entity(dd, MediaType.APPLICATION_JSON + " ;charset=utf-8"));
+	            .post(Entity.entity(new ObjectMapper().writeValueAsString(dd), MediaType.APPLICATION_JSON + " ;charset=utf-8"));
 		if(resp.getStatus() >= 200 && resp.getStatus() < 300){
 			//正确
 			return ;
