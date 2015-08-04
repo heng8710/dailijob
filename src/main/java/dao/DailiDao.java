@@ -24,7 +24,7 @@ public class DailiDao {
 		final String dbPath = (String)GlobalConfig.get("daili_db_file_path");
 		return SqliteTools.conn(dbPath);
 	}
-	
+	 
 	public static Optional<DailiDomain> getLastOne(){
 		final String sql = "select * from daili order by addTime desc limit 0,1";
 		try (final Connection conn = conn();final Statement st = conn.createStatement();final ResultSet rs = st.executeQuery(sql)){
