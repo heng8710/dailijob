@@ -1,0 +1,27 @@
+###初始化daili的数据库以及表
+
+mkdir -p /data/sqlite/daili
+#记得改权限
+chmod 777 /data/sqlite/daili
+
+#create db
+sqlite3 /data/sqlite/daili/daili.db
+
+#create table: daili
+CREATE TABLE "daili" (
+"id"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+"title"  TEXT(222),
+"columnNames"  TEXT(222),
+"rows"  TEXT(5555),
+"addTime"  INTEGER,
+"reserveText"  TEXT(222),
+"comment"  TEXT(55)
+);
+
+#这个是用来检查数据的
+select *,datetime(addTime,'unixepoch', 'localtime') as `time` from daili;
+
+
+###日志目录
+mkdir -p /data/log/dailijob
+chmod 777 /data/log/dailijob
