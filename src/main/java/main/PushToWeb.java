@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
-import com.sun.xml.internal.txw2.IllegalSignatureException;
 
 import conf.GlobalConfig;
 import dao.DailiDao;
@@ -39,7 +38,7 @@ public class PushToWeb {
 			post(targetUrl, dd);
 		} catch (Exception e) {
 			logger.error("推送代理信息失败", e);
-			throw new IllegalSignatureException("推送代理信息失败", e);
+			throw new IllegalStateException("推送代理信息失败", e);
 		}
 	}
 	
