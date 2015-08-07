@@ -9,12 +9,11 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 
-import conf.GlobalConfig;
+import conf.GlobalSetting;
 import dao.DailiDao;
 import domain.DailiDomain;
 
@@ -32,7 +31,7 @@ public class PushToWeb {
 //			throw new IllegalStateException("必须要有一个执行参数[所推送过去的dailiweb的http地址]");
 //		}
 //		final String targetUrl = args[0];
-		final String targetUrl = (String)GlobalConfig.get("dailiweb_post_url");
+		final String targetUrl = (String)GlobalSetting.getByPath("dailiweb_post_url");
 		if(Strings.isNullOrEmpty(targetUrl)){
 			throw new IllegalStateException("[dailiweb_post_url]没有配置");
 		}

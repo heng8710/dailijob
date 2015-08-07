@@ -13,6 +13,8 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.google.common.base.CharMatcher;
 import com.google.common.collect.Lists;
 
+import conf.GlobalSetting;
+
 
 /**
  * @author heng
@@ -21,14 +23,12 @@ import com.google.common.collect.Lists;
 public class ParseWebPage {
 
 	public static PageDomain parse( ) {
-		return parse(url);
+		return parse((String)GlobalSetting.getByPath("target_web_url"));
 	}
 	
 	public static PageDomain parse(final String url) {
 		return parse0(url);
 	}
-	
-	static final String url = "http://proxy.goubanjia.com/"; 
 	
 	static PageDomain parse0(final String url ){
 		final HtmlDivision root = tableDiv(url);

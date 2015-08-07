@@ -14,14 +14,14 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
-import conf.GlobalConfig;
+import conf.GlobalSetting;
 import domain.DailiDomain;
 
 public class DailiDao {
 	
 	 
 	static Connection conn(){
-		final String dbPath = (String)GlobalConfig.get("daili_db_file_path");
+		final String dbPath = (String)GlobalSetting.getByPath("daili_db_file_path");
 		return SqliteTools.conn(dbPath);
 	}
 	 
